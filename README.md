@@ -5,8 +5,8 @@
 ## 成果物
 - 模写サイト&emsp;→&emsp;[Cresta Design.](https://blog.ykllog.com/coding/PracticeSite01/)
 - BASIC認証を施しています。
- - ID：copy
- - Password：pass
+    - ID：copy
+    - Password：pass
 
 ## 使用言語
 HTML/CSS(Sass)/JavaScript
