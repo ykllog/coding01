@@ -1,6 +1,12 @@
-# クリ★スタ模写初級編
-- クリ★スタのデザインカンプ（初級編）をコーディングしました。
-- XDデザインカンプ配布元→[【コーディング課題】XDからコーディングをしよう【初級編】](https://crestadesign.org/cording-first/)
+# クリ★スタコーディング課題〜初級編〜
+- クリ★スタのコーディング課題（初級編）に挑戦しました。
+- 課題提供元&emsp;→&emsp;[【コーディング課題】XDからコーディングをしよう【初級編】](https://crestadesign.org/cording-first/)
+
+## 成果物
+- 模写サイト&emsp;→&emsp;[Cresta Design.](https://blog.ykllog.com/coding/PracticeSite01/)
+- BASIC認証を施しています。
+    - ID：copy
+    - Password：pass
 
 ## 使用言語
 HTML/CSS(Sass)/JavaScript
