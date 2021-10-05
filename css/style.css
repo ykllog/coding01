@@ -234,18 +234,14 @@ header .header__inner .mdnav {
   padding: 120px 95px;
 }
 
-.smnav ul li {
+.smnav ul li:not(:last-child) {
   margin-bottom: 50px;
 }
 
-.smnav ul li a {
+.smnav ul li:not(:last-child) a {
   display: block;
   color: #fff;
   font-weight: bolder;
-}
-
-.smnav ul li:last-child {
-  margin-bottom: 0;
 }
 
 .fv {
