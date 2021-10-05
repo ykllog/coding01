@@ -34,6 +34,7 @@ $color-background: #1B1310;
 
 body {
     @include font-size(14);
+    color: $color-default;
 }
 img {
     width: 100%;
@@ -55,9 +56,12 @@ a {
     background-color: $color-background;
     color: $color-light;
     border-bottom: 2px solid $color-light;
+    position: fixed;
+    z-index: 10;
+    width: 100%;
     &__inner {
         width: 100%;
-        max-width: 1200px;
+        max-width: 1240px;
         margin: 0 auto;
         padding: 0 15px;
         height: 75px;
@@ -85,8 +89,7 @@ a {
                     padding-left: 0;
                 }
                 a {
-                    @include font-size(16);
-                    color: $color-light;
+                    @include font-size(14);
                     font-weight: medium;
                 }
             }
@@ -110,7 +113,7 @@ a {
     &__line {
         width: 100%;
         height: 2px;
-        top: 10px;
+        top: 12px;
         right: 0;
         display: block;
         background: $color-light;
@@ -146,8 +149,8 @@ a {
         position: relative;
         &:before {
             content: '';
-            top: 15px;
-            left: 0;
+            top: 13px;
+            left: -2px;
             width: 25px;
             height: 2px;
             transform: rotate(45deg);
@@ -156,8 +159,8 @@ a {
         }
         &:after {
             content: '';
-            top: 15px;
-            left: 0;
+            top: 13px;
+            left: -2px;
             width: 25px;
             height: 2px;
             transform: rotate(-45deg);
@@ -181,7 +184,7 @@ a {
     width: 0;
     height: 100vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column;
     text-align: center;
@@ -189,15 +192,14 @@ a {
     @include md {
         display: none;
     }
-    &__lists {
-        padding: 120px 95px;
-    }
-    &__list:not(:last-child) {
-        margin-bottom: 50px;
+    &__list {
+        line-height: 72.5px;
         a {
             display: block;
             color: $color-light;
-            font-weight: bolder;
+        }
+        &:first-of-type {
+            margin-top: 190px;
         }
     }
 }
@@ -207,7 +209,7 @@ a {
 .fv {
     width: 100%;
     max-width: 100%;
-    height: 90vh;
+    height: 100vh;
     background-image: url(../img/fv-bgi_sp@2x.jpg);
     background-position: center;
     background-size: cover;
@@ -238,29 +240,26 @@ a {
 .main {
     &__inner {
         width: 100%;
-        max-width: 1024px;
-        margin-top: 100px;
+        max-width: 1070px;
         padding: 0 15px;
         @include md {
-            margin: 100px auto 0;
+            margin: 0 auto;
         }
     }
     &__title {
         @include font-size(36);
         text-align: center;
         font-family: 'Noto Sans JP', sans-serif;
-        &--fontWeight {
-            font-weight: none;
-        }
     }
     &__subTitle {
         @include font-size(20);
         margin-top: 70px;
         line-height: 40px;
+        letter-spacing: .15rem;
         @include md {
             @include font-size(24);
-            margin-top: 75px;
             line-height: 48px;
+            letter-spacing: .25rem;
         }
         &--service {
             @include font-size(20);
@@ -273,33 +272,43 @@ a {
         }
     }
     &__text {
-        margin-top: 30px;
+        margin-top: 20px;
         line-height: 30px;
+        letter-spacing: .05rem;
         @include md {
-            margin-top: 42px;
+            margin-top: 30px;
         }
         &--service {
             margin-top: 24px;
             line-height: 30px;
-            @include md {
-                margin-top: 42px;
-            }
         }
     }
 }
 
+.about {
+    margin-top: 100px;
+}
+
 .service {
+    margin-top: 150px;
+    @include md {
+        margin-top: 160px;
+    }
     &__items {
-        margin-top: 70px;
+        margin-top: 40px;
         display: flex;
         flex-direction: column-reverse;
+        &:nth-child(2n + 1) {
+            margin-top: 15px;
+        }
         @include md {
+            margin-top: 20px;
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
             &:nth-child(2n + 1) {
-                margin-top: 50px;
+                margin-top: 25px;
                 display: flex;
                 flex-direction: row-reverse;
                 align-items: center;
@@ -308,10 +317,10 @@ a {
         }
     }
     &__item__img {
-        margin-top: 70px;
-        width: 480px;
+        margin-top: 35px;
         @include md {
             margin-top: 40px;
+            width: 480px;
         }
     }
     &__item__image {
@@ -325,52 +334,73 @@ a {
     }
     &__item__text {
         margin-top: 30px;
-        width: 480px;
+        @include md {
+            width: 480px;
+        }
         &--row {
             margin-top: 30px;
-            width: 480px;
+            @include md {
+                width: 480px;
+            }
         }
     }
 }
 
 .news {
-    padding: 0;
+    margin-top: -50px;
+    padding-top: 200px;
+    @include md {
+        margin-top: 150px;
+        padding: 0;
+    }
     &__items {
-        margin-top: 70px;
+        margin-top: 25px;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     }
     &__item {
         min-width: 280px;
-        margin: 50px 5% 0;
+        margin: 50px 3% 0;
         box-shadow: 0px 0px 6px rgba(27, 19, 16, 0.4);
+        @include md {
+            margin: 50px 5% 0;
+        }
         &__text {
-            padding: 25px 33px;
+            padding: 20px 33px 25px;
             line-height: 25px;
         }
     }
 }
 
 .contact {
-    max-width: 700px;
-    margin: 150px auto 0;
+    width: 100%;
+    max-width: 730px;
+    margin: 155px auto 0;
+    .main__title--fontWeight {
+        @include font-size(26);
+        text-align: center;
+    }
     .form {
         display: flex;
         flex-direction: column;
-        margin-top: 70px;
+        margin-top: 65px;
         text-align: center;
+        @include md {
+            margin-top: 65px;
+        }
         &__item {
-            margin-top: 22px;
+            margin-top: 15px;
             @include font-size(16);
             text-align: left;
             line-height: 30px;
+            letter-spacing: .05rem;
             &:first-child {
                 margin-top: 0;
             }
             &:last-child {
                 margin-top: 50px;
                 text-align: center;
-                input {
+                .form__submit {
                     width: 235px;
                     height: 60px;
                     border-radius: 50px;
@@ -383,11 +413,13 @@ a {
         }
         &__input {
             width: 100%;
+            max-width: 100%;
             height: 30px;
             border: 1px solid $color-default;
         }
         &__textarea {
             width: 100%;
+            max-width: 100%;
             height: 170px;
             border: 1px solid $color-default;
         }
@@ -410,4 +442,5 @@ a {
 
 .copyrigth {
     color: $color-light;
+    @include font-size(14);
 }
