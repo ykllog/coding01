@@ -21,23 +21,8 @@ $color-background: #1B1310;
 //*  レスポンシブ定義
 //*------------------*
 
-//ブレイクポイント
-$sm: 640px;
-$md: 768px;
-$lg: 1024px;
-
-@mixin sm {
-    @media screen and (min-width: $sm) {
-        @content;
-    }
-}
 @mixin md {
-    @media screen and (min-width: $lg) {
-        @content;
-    }
-}
-@mixin lg {
-    @media screen and (min-width: $lg) {
+    @media screen and (min-width: 768px) {
         @content;
     }
 }
@@ -49,45 +34,34 @@ $lg: 1024px;
 
 body {
     @include font-size(14);
+    color: $color-default;
 }
-
 img {
     width: 100%;
-}
-h1 {
-    @include font-size(30);
-    @include md {
-        @include font-size(50);
-    }
-}
-h2 {
-    @include font-size(36);
-    text-align: center;
-    font-family: 'Noto Sans JP', sans-serif;
-}
-h3 {
-    @include font-size(20);
-    @include md {
-        @include font-size(24);
-    }
+    max-width: 100%;
+    height: auto;
 }
 a {
     text-decoration: none;
 }
 
 
-
 //*------------------*
 //*  その他
 //*------------------*
 
-header {
+//*-- header --------*
+
+.header {
     background-color: $color-background;
     color: $color-light;
     border-bottom: 2px solid $color-light;
-    .header__inner {
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    &__inner {
         width: 100%;
-        max-width: 1200px;
+        max-width: 1240px;
         margin: 0 auto;
         padding: 0 15px;
         height: 75px;
@@ -97,27 +71,26 @@ header {
         @include md {
             padding: 20px;
         }
-        &__title {
-            @include font-size(26);
-            font-weight: bold;
-        }
-        .mdnav {
-            display: none;
-            @include md {
-                display: block;
-                &__list {
-                    display: flex;
-                    li {
-                        padding-left: 55px;
-                        &:first-child {
-                            padding-left: 0;
-                        }
-                        a {
-                            @include font-size(16);
-                            color: $color-light;
-                            font-weight: bolder;
-                        }
-                    }
+    }
+    &__title {
+        @include font-size(26);
+        font-weight: medium;
+    }
+    .mdnav {
+        display: none;
+        @include md {
+            display: block;
+            &__lists {
+                display: flex;
+            }
+            &__list {
+                padding-left: 55px;
+                &:first-child {
+                    padding-left: 0;
+                }
+                a {
+                    @include font-size(14);
+                    font-weight: medium;
                 }
             }
         }
@@ -130,17 +103,17 @@ header {
     height: 26px;
     cursor: pointer;
     z-index: 100;
-    >div {
+    &__lines {
         position: relative;
         width: 26px;
     }
     @include md {
         display: none;
     }
-    span {
+    &__line {
         width: 100%;
         height: 2px;
-        top: 10px;
+        top: 12px;
         right: 0;
         display: block;
         background: $color-light;
@@ -171,13 +144,13 @@ header {
     @include md {
         display: none;
     }
-    .hamburger__line span {
+    .hamburger__line {
         width: 0;
         position: relative;
         &:before {
             content: '';
-            top: 15px;
-            left: 0;
+            top: 13px;
+            left: -2px;
             width: 25px;
             height: 2px;
             transform: rotate(45deg);
@@ -186,8 +159,8 @@ header {
         }
         &:after {
             content: '';
-            top: 15px;
-            left: 0;
+            top: 13px;
+            left: -2px;
             width: 25px;
             height: 2px;
             transform: rotate(-45deg);
@@ -211,7 +184,7 @@ header {
     width: 0;
     height: 100vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column;
     text-align: center;
@@ -219,22 +192,24 @@ header {
     @include md {
         display: none;
     }
-    ul {
-        padding: 120px 95px;
-        li:not(:last-child) {
-            margin-bottom: 50px;
-            a {
-                display: block;
-                color: $color-light;
-                font-weight: bolder;
-            }
+    &__list {
+        line-height: 72.5px;
+        a {
+            display: block;
+            color: $color-light;
+        }
+        &:first-of-type {
+            margin-top: 190px;
         }
     }
 }
 
+//*-- main ----------*
+
 .fv {
     width: 100%;
-    height: 375px;
+    max-width: 100%;
+    height: 100vh;
     background-image: url(../img/fv-bgi_sp@2x.jpg);
     background-position: center;
     background-size: cover;
@@ -243,10 +218,10 @@ header {
     align-items: center;
     flex-direction: column;
     @include md {
-        height: 740px;
         background-image: url(../img/fv-bgi@2x.jpg);
     }
     &__catch {
+        @include font-size(30);
         border: 2px solid $color-light;
         color: $color-light;
         text-align: center;
@@ -254,6 +229,7 @@ header {
         height: 100px;
         line-height: 100px;
         @include md {
+            @include font-size(50);
             width: 449px;
             height: 135px;
             line-height: 135px;
@@ -261,142 +237,169 @@ header {
     }
 }
 
-.about {
-    width: 100%;
-    max-width: 1024px;
-    margin-top: 100px;
-    padding: 0 15px;
-    @include md {
-        margin: 100px auto 0;
+.main {
+    &__inner {
+        width: 100%;
+        max-width: 1070px;
+        padding: 0 15px;
+        @include md {
+            margin: 0 auto;
+        }
+    }
+    &__title {
+        @include font-size(36);
+        text-align: center;
+        font-family: 'Noto Sans JP', sans-serif;
     }
     &__subTitle {
+        @include font-size(20);
         margin-top: 70px;
         line-height: 40px;
+        letter-spacing: .15rem;
         @include md {
-            margin-top: 75px;
+            @include font-size(24);
             line-height: 48px;
+            letter-spacing: .25rem;
+        }
+        &--service {
+            @include font-size(20);
+            margin-top: 0;
+            line-height: 40px;
+            @include md {
+                @include font-size(24);
+                line-height: 48px;
+            }
         }
     }
     &__text {
-        margin-top: 30px;
+        margin-top: 20px;
         line-height: 30px;
+        letter-spacing: .05rem;
         @include md {
-            margin-top: 42px;
+            margin-top: 30px;
+        }
+        &--service {
+            margin-top: 24px;
+            line-height: 30px;
         }
     }
 }
 
+.about {
+    margin-top: 100px;
+}
+
 .service {
-    width: 100%;
-    max-width: 1024px;
-    margin: 150px auto 0;
-    padding: 0 15px;
-    &__item {
-        margin-top: 70px;
+    margin-top: 150px;
+    @include md {
+        margin-top: 160px;
+    }
+    &__items {
+        margin-top: 40px;
         display: flex;
         flex-direction: column-reverse;
-        &--01 {
-            margin-top: 40px;
-            @include sm {
-                margin-top: 70px;
-                width: 100%;
-                max-width: 480px;
-                img {
-                    width: 100%;
-                    height: 240px;
-                    object-fit: cover;
-                }
-            }
+        &:nth-child(2n + 1) {
+            margin-top: 15px;
         }
-        &--02 {
-            margin-top: 70px;
-            @include sm {
-                margin-left: 30px;
-            }
-            @include md {
-                margin-left: 70px;
-            }
-        }
-        @include sm {
+        @include md {
+            margin-top: 20px;
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
-            height: 240px;
-            &:nth-child(2n) {
-                margin-top: 50px;
+            &:nth-child(2n + 1) {
+                margin-top: 25px;
                 display: flex;
                 flex-direction: row-reverse;
-                .service__item--02 {
-                    margin-left: 0;
-                    margin-right: 30px;
-                    @include md {
-                        margin-right: 70px;
-                    }
-                }
+                align-items: center;
+                justify-content: space-between;
             }
         }
     }
-    &__subTitle {
-        line-height: 40px;
+    &__item__img {
+        margin-top: 35px;
         @include md {
-            line-height: 48px;
+            margin-top: 40px;
+            width: 480px;
         }
     }
-    &__text {
-        margin-top: 42px;
-        line-height: 30px;
-        @include sm {
-            margin-top: 24px;
-        }
+    &__item__image {
+        width: 100%;
+        max-width: 100%;
+        height: 150px;
+        object-fit: cover;
         @include md {
-            margin-top: 42px;
+            height: 100%;
+        }
+    }
+    &__item__text {
+        margin-top: 30px;
+        @include md {
+            width: 480px;
+        }
+        &--row {
+            margin-top: 30px;
+            @include md {
+                width: 480px;
+            }
         }
     }
 }
 
 .news {
-    width: 100%;
-    max-width: 1024px;
-    margin: 150px auto 0;
-    &__item {
-        margin-top: 70px;
+    margin-top: 155px;
+    @include md {
+        margin-top: 150px;
+        padding: 0;
+    }
+    &__items {
+        margin-top: 25px;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        &__inner {
-            min-width: 280px;
+    }
+    &__item {
+        min-width: 280px;
+        margin: 50px 3% 0;
+        box-shadow: 0px 0px 6px rgba(27, 19, 16, 0.4);
+        @include md {
             margin: 50px 5% 0;
-            box-shadow: 0px 0px 6px rgba(27, 19, 16, 0.4);
-            &--02 {
-                padding: 25px 33px;
-                line-height: 25px;
-            }
+        }
+        &__text {
+            padding: 20px 33px 25px;
+            line-height: 25px;
         }
     }
 }
 
 .contact {
     width: 100%;
-    max-width: 700px;
-    margin: 150px auto 0;
-    padding: 0 15px;
-    &__form {
+    max-width: 730px;
+    margin: 155px auto 0;
+    .main__title--fontWeight {
+        @include font-size(26);
+        text-align: center;
+    }
+    .form {
         display: flex;
         flex-direction: column;
-        margin-top: 70px;
+        margin-top: 65px;
         text-align: center;
-        .form {
-            margin-top: 22px;
+        @include md {
+            margin-top: 65px;
+        }
+        &__item {
+            margin-top: 15px;
             @include font-size(16);
             text-align: left;
             line-height: 30px;
+            letter-spacing: .05rem;
             &:first-child {
                 margin-top: 0;
             }
             &:last-child {
                 margin-top: 50px;
                 text-align: center;
-                input {
+                .form__submit {
                     width: 235px;
                     height: 60px;
                     border-radius: 50px;
@@ -407,18 +410,24 @@ header {
                 }
             }
         }
-        input {
+        &__input {
             width: 100%;
+            max-width: 100%;
             height: 30px;
+            border: 1px solid $color-default;
         }
-        textarea {
+        &__textarea {
             width: 100%;
+            max-width: 100%;
             height: 170px;
+            border: 1px solid $color-default;
         }
     }
 }
 
-footer {
+//*-- footer --------*
+
+.footer {
     margin-top: 50px;
     height: 60px;
     line-height: 60px;
@@ -428,7 +437,9 @@ footer {
         height: 80px;
         line-height: 80px;
     }
-    .copyrigth {
-        color: $color-light;
-    }
+}
+
+.copyrigth {
+    color: $color-light;
+    @include font-size(14);
 }
