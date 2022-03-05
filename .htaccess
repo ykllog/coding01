@@ -1,4 +1,0 @@
-AuthType Basic
-AuthName "Practice Site 01"
-AuthUserFile "/home/users/0/gonna.jp-oeobr/web/blog/coding/PracticeSite01/.htpasswd"
-require valid-user
